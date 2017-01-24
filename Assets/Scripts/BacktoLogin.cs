@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Login : MonoBehaviour {
+public class BacktoLogin : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -14,13 +14,8 @@ public class Login : MonoBehaviour {
 	
 	}
 
-    public void clickPlay()
+    public void clickBack()
     {
-        SceneManager.LoadScene("Login");
-    }
-
-    public void clickSettings()
-    {
-        SceneManager.LoadScene("Login");
+        SceneManager.LoadScene("MainMenu");
     }
 }
