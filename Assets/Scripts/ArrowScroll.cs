@@ -21,7 +21,7 @@ public class ArrowScroll : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (index < 0)
-            index = MAX_INDEX;
+            index = MAX_INDEX - 1;
         else if (index >= MAX_INDEX)
             index = 0;
         if (!lang_text.text.Equals(lang_type[index]))

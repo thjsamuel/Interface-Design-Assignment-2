@@ -22,7 +22,7 @@ public class move : MonoBehaviour {
         camera = camera_go.GetComponent<Camera>();
         collideList = GameObject.FindGameObjectsWithTag("Collidable");
 
-        joyStick = GameObject.Find("JoystickThumpad");
+        joyStick = GameObject.Find("Joystick thumbpad");
         //joyStickStartingPos = new Vector3(196, 196, 1); // change to get position
         joyStickStartingPos = joyStick.transform.position;
 	}
