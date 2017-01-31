@@ -70,7 +70,7 @@ public class move : MonoBehaviour {
 	void Update () {
         Vector3 dir = (joyStick.transform.position - joyStickStartingPos).normalized;
 
-        transform.position += dir * Time.deltaTime;
+        transform.position += dir * (2 * Time.deltaTime);
         transform.position = new Vector3(transform.position.x, transform.position.y, -1.5f);
 
         //float m_fSpeed = 0.01f;
