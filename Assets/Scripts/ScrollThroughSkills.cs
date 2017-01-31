@@ -10,7 +10,7 @@ public class ScrollThroughSkills : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        scrollSpeed = 1.0f;
+        scrollSpeed = 5.0f;
         prevScrollValue = scrollbar.value;
 	}
 	

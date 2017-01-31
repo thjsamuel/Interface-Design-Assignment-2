@@ -86,6 +86,13 @@ public class SwipeManager : MonoBehaviour {
 
             //Debug.Log(index);
         }
+
+        if (swipeIndex == MAX_SWIPES)
+        {
+            swipeIndex = 0;
+        }
+
+        Debug.Log(swipeIndex);
 	}
 
     public bool isSwiping(SwipeDirection dir)
