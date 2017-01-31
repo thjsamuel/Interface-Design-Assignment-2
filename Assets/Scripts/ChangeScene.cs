@@ -6,6 +6,11 @@ public class ChangeScene : MonoBehaviour {
 
     public string nextScene;
 
+    public void GoBack()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void OnClick()
     {
         SceneManager.LoadScene(nextScene);

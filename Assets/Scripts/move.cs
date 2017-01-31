@@ -14,6 +14,11 @@ public class move : MonoBehaviour {
 
     private GameObject joyStick;
     private Vector3 joyStickStartingPos;
+    private Touch finger1;
+    private Touch finger2;
+
+    public float speed_multiplier;
+    private Timer cool_down;
     
 	// Use this for initialization
 	void Start () {
@@ -25,6 +30,11 @@ public class move : MonoBehaviour {
         joyStick = GameObject.Find("Joystick thumbpad");
         //joyStickStartingPos = new Vector3(196, 196, 1); // change to get position
         joyStickStartingPos = joyStick.transform.position;
+
+        speed_multiplier = 1.0f;
+        cool_down = new Timer();
+        cool_down.Start();
+        cool_down.Init(0.0f, 5, 0);
 	}
 
     bool checkCollisionBetween2Objects()
@@ -70,9 +80,9 @@ public class move : MonoBehaviour {
 	void Update () {
         Vector3 dir = (joyStick.transform.position - joyStickStartingPos).normalized;
 
-        transform.position += dir * (2 * Time.deltaTime);
+        transform.position += dir * (speed_multiplier * Time.deltaTime);
         transform.position = new Vector3(transform.position.x, transform.position.y, -1.5f);
-
+        skillUsed();
         //float m_fSpeed = 0.01f;
         //playerCamCoord = camera.WorldToViewportPoint(this.transform.position);
         //float playerCamXForward = playerCamCoord.x + 0.01f; float playerCamXBackward = playerCamCoord.x - 0.01f; float playerCamYForward = playerCamCoord.y + 0.01f;
@@ -139,5 +149,51 @@ public class move : MonoBehaviour {
     public void isUp()
     {
         b_isUsingJoystick = false;
+    }
+
+    public void skillUsed()
+    {
+        if (Input.touchCount >= 2)
+        {
+            finger1 = Input.GetTouch(0);
+            finger2 = Input.GetTouch(1);
+            Vector2 startPos1 = new Vector2();
+            Vector2 startPos2 = new Vector2();
+            Vector2 direction1 = new Vector2();
+            Vector2 direction2 = new Vector2();
+	        bool directionChosen = false;
+            // Handle finger movements based on touch phase.
+            switch (finger1.phase)
+            {
+                // Record initial touch position.
+                case TouchPhase.Began:
+                    startPos1 = finger1.position;
+                    directionChosen = false;
+                    startPos2 = finger2.position;
+                    break;
+
+                // Determine direction by comparing the current touch position with the initial one.
+                case TouchPhase.Moved:
+                    direction1 = finger1.position - startPos1;
+                    direction2 = finger2.position - startPos2;
+                    break;
+
+                // Report that a direction has been chosen when the finger is lifted.
+                case TouchPhase.Ended:
+                    directionChosen = true;
+                    break;
+            }
+            if (directionChosen)
+            {
+                speed_multiplier = 2;
+                cool_down.Update();
+                if (cool_down.can_run)
+                {
+                    directionChosen = false;
+                    cool_down.Init(0.0f, 5, 0);
+                    speed_multiplier = 1;
+                }
+            }
+        }
     }
 }

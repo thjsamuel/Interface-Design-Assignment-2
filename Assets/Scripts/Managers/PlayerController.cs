@@ -63,5 +63,14 @@ public class PlayerController : MonoBehaviour
             m_playerHealth.DecreaseHealthGradually(Time.deltaTime, m_playerDmg);
             is_hurt = false;
         }
+        if (m_playerHealth.GetHealth() <= 0.0f)
+        {
+            m_isDead = true;
+        }
+        if (m_isDead)
+        {
+            ChangeScene change = new ChangeScene();
+            change.GoBack();
+        }
     }
 }

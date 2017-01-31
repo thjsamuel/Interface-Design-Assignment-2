@@ -20,17 +20,9 @@ public class DoublePress : MonoBehaviour {
     {
         if (interaction.tapCount >= 2)
         {
-            toggle = clicked.GetComponent<Toggle>();
-            if (toggle.IsActive() == false)
-            {
-                toggle.gameObject.SetActive(true);
-                toggle.isOn = true;
-            }
-            else
-            {
-                toggle.gameObject.SetActive(false);
-                toggle.isOn = false;
-            }
+            toggle = clicked.transform.GetChild(0).GetComponent<Toggle>();
+            toggle.gameObject.SetActive(!toggle.gameObject.activeSelf);
+            toggle.isOn = !toggle.isOn;
         }
     }
 }
