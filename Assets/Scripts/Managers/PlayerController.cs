@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private Health m_playerHealth;
     [HideInInspector]
     public int m_playerDmg; // Damage to player, recieved from EnemyController
+    private bool m_isDead; // Is not dead
 
     void Awake()
     {
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
         is_hurt = false;
         health_component = GameObject.FindGameObjectWithTag("Health");
         m_playerHealth = health_component.GetComponent<Health>();
+        m_isDead = false;
     }
 
     // Update is called once per frame

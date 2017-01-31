@@ -11,7 +11,6 @@ public class ArrowScroll : MonoBehaviour {
 	void Start () {
         index = 0;
         lang_text = transform.GetChild(0).GetComponent<Text>();
-        Debug.Log(lang_text.text);
         lang_type = new string[MAX_INDEX];
         lang_type[0] = "English";
         lang_type[1] = "Mandarin";
