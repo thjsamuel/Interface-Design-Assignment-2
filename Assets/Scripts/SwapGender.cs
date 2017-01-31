@@ -4,15 +4,19 @@ using System.Collections;
 
 public class SwapGender : MonoBehaviour {
 
-    public Image theChar;
+    private Image thePlayerImage;
+    public Sprite targetSprite;
 
-	// Use this for initialization
-	void Start () {
-	    
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    
-	}
+    void Update()
+    {
+        thePlayerImage = GameObject.Find("PlayerImage").GetComponent<Image>();
+    }
+
+    public void OnClick()
+    {
+        if (thePlayerImage != targetSprite)
+        {
+            thePlayerImage.sprite = targetSprite;
+        }
+    }
 }
