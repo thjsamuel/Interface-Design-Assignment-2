@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class CharacterSwipe : MonoBehaviour {
@@ -12,12 +13,14 @@ public class CharacterSwipe : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
 
         if (swipeIndex < SwipeManager.Instance.MAX_SWIPES)
         {
             if (SwipeManager.Instance.swipesArray[swipeIndex] == SwipeDirection.LEFT)
             {
+                //attack = true;
                 Debug.Log("Left");
                 ++swipeIndex;
             }

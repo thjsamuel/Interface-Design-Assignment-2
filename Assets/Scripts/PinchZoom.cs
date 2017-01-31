@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class PinchZoom : MonoBehaviour {
 
     private Image theImage;
-    public float zoomSpeed = 0.5f;
+    public float zoomSpeed = 0.1f;
+    private float zoomValue = 0.0f;
 
     void Start()
     {
@@ -28,7 +30,15 @@ public class PinchZoom : MonoBehaviour {
 
             float deltaMagDiff = prevTouchDeltaMag - touchDeltaMag;
 
-            theImage.transform.localScale += new Vector3(zoomSpeed, zoomSpeed, 0);
+            zoomValue += deltaMagDiff * zoomSpeed;
+
+            //theImage.transform.localScale += new Vector3(Mathf.Clamp(zoomValue, 0.0f, 5.0f), Mathf.Clamp(zoomValue, 0.0f, 5.0f));
+            theImage.transform.localScale += new Vector3(zoomValue, zoomValue);
+        }
+
+        if (Input.touchCount == 4)
+        {
+            SceneManager.LoadScene("MapPage");
         }
 	}
 }
